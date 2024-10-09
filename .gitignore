@@ -1,0 +1,7 @@
+ex*/*
+!ex00/megaphone.cpp
+!ex*/Makefile
+!ex01/*.cpp
+!ex01/*.hpp
+
+.vscode/
