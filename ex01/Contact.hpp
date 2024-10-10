@@ -3,10 +3,11 @@
 
 class Contact {
 public:
-	Contact	Initialize(void);
-	string	GetFirstName(void);
-	string	GetLastName(void);
-	string	GetNickname(void);
+	Contact	initialize(void);
+	string	getFirstName(void);
+	string	getLastName(void);
+	string	getNickname(void);
+	void	printInfo(void);
 private:
 	string	first_name_;
 	string	last_name_;

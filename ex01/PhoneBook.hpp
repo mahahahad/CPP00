@@ -6,10 +6,10 @@ class PhoneBook {
 public:
 	PhoneBook();
 	Contact contacts[8];
-	void	AddContact();
-	void	ListContacts(void);
-	void	FindContact(void);
+	void	addContact(void);
+	int		listContacts(void);
+	void	findContact(void);
 private:
 	int		active_index_;
-	void	PrintValue(string str, char suffix);
+	void	printValue(string str, char suffix);
 };

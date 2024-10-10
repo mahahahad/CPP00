@@ -4,11 +4,11 @@
 /**
  * @brief Utility function to convert integers to strings
  * Used in printing the index of contacts with padding.
- * 
- * @param num 
- * @return string 
+ *
+ * @param num
+ * @return string
  */
-string	NumToStr(int num) {
+string	numToStr(int num) {
 	std::ostringstream str_stream;
 	str_stream << num;
 	return (str_stream.str());
@@ -19,14 +19,14 @@ int	main(void) {
 	PhoneBook	phonebook;
 
 	while (input != "EXIT") {
-		cout << "Enter a command [ADD/SEARCH/EXIT] > ";
+		cout << "Enter a command [ADD/SEARCH/EXIT]> ";
 		getline(cin, input);
 
 		if (input == "ADD") {
-			phonebook.AddContact();
+			phonebook.addContact();
 		}
 		else if (input == "SEARCH") {
-			phonebook.FindContact();
+			phonebook.findContact();
 		}
 		else if (input == "EXIT") {
 			return (0);

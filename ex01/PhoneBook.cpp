@@ -11,11 +11,11 @@ PhoneBook::PhoneBook() {
 
 /**
  * @brief Add a new contact to the list of contacts in the phonebook
- * If the phonebook is full i.e. already contains 8 contacts, the oldest 
- * contact is replaced and every contact is shifted to the left and the new 
+ * If the phonebook is full i.e. already contains 8 contacts, the oldest
+ * contact is replaced and every contact is shifted to the left and the new
  * contact is added at the end of the list.
  */
-void	PhoneBook::AddContact() {
+void	PhoneBook::addContact(void) {
 	Contact	new_contact;
 
 	if (active_index_ == 8) {
@@ -26,7 +26,7 @@ void	PhoneBook::AddContact() {
 		if (response == "y") {
 			for (int i = 0; i < 8; i++) {
 				if (i == 7) {
-					contacts[7] = new_contact.Initialize();
+					contacts[7] = new_contact.initialize();
 					return ;
 				}
 				contacts[i] = contacts[i + 1];
@@ -37,39 +37,39 @@ void	PhoneBook::AddContact() {
 		}
 	}
 	else
-		contacts[active_index_++] = new_contact.Initialize();
+		contacts[active_index_++] = new_contact.initialize();
 }
 
 /**
  * @brief List all of the contacts in the phonebook
  */
-void	PhoneBook::ListContacts(void) {
+int	PhoneBook::listContacts(void) {
 	if (active_index_ == 0) {
 		cout << "You have no contacts in your phonebook\n";
-		return ;
+		return (-1);
 	}
+	printValue("Index", '|');
+	printValue("F. Name", '|');
+	printValue("L. Name", '|');
+	printValue("Nickname", '\n');
 	for (int i = 0; i < active_index_; i++) {
-
-		PrintValue("Index", '|');
-		PrintValue("F. Name", '|');
-		PrintValue("L. Name", '|');
-		PrintValue("Nickname", '\n');
-		PrintValue(NumToStr(i + 1), '|');
-		PrintValue(contacts[i].GetFirstName(), '|');
-		PrintValue(contacts[i].GetLastName(), '|');
-		PrintValue(contacts[i].GetNickname(), '\n');
+		printValue(numToStr(i + 1), '|');
+		printValue(contacts[i].getFirstName(), '|');
+		printValue(contacts[i].getLastName(), '|');
+		printValue(contacts[i].getNickname(), '\n');
 	}
+	return (0);
 }
 
 /**
- * @brief Print the provided string with the prefix and suffix and 10 character 
+ * @brief Print the provided string with the prefix and suffix and 10 character
  * padding.
- * If the string exceeds the 10 character limit, it is truncated and a '.' is 
+ * If the string exceeds the 10 character limit, it is truncated and a '.' is
  * displayed as the last character.
- * 
- * @param str 
+ *
+ * @param str
  */
-void	PhoneBook::PrintValue(string str, char suffix) {
+void	PhoneBook::printValue(string str, char suffix) {
 	int	str_length = str.length();
 	int	pad_length = 10 - str_length;
 
@@ -90,6 +90,24 @@ void	PhoneBook::PrintValue(string str, char suffix) {
 /**
  * @brief Find a specific contact from the phonebook
  */
-void	PhoneBook::FindContact(void) {
-	ListContacts();
+void	PhoneBook::findContact(void) {
+	string	contact_index;
+
+	if (listContacts() == -1) {
+		return ;
+	};
+	cout << "Index to display [";
+	for (int i = 0; i < active_index_; i++) {
+		cout << i + 1;
+		if (i + 1 != active_index_)
+			cout << "/";
+	}
+	cout << "]> ";
+	getline(cin, contact_index);
+	int int_id = std::stoi(contact_index);
+	if (int_id - 1 < 0 || int_id - 1 >= active_index_) {
+		cout << "Please enter a valid index\n";
+		return ;
+	}
+	contacts[int_id - 1].printInfo();
 }

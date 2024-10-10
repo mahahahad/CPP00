@@ -8,4 +8,4 @@ using std::cout;
 using std::endl;
 using std::string;
 
-string	NumToStr(int num);
+string	numToStr(int num);
