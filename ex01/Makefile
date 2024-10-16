@@ -1,7 +1,7 @@
 CC := c++
 CFLAGS := -Wall -Wextra -Wextra -std=c++98 -g3 -fsanitize=address
 SRCS := Contact.cpp PhoneBook.cpp
-NAME := Main
+NAME := main
 
 all:
 	$(CC) $(CFLAGS) $(SRCS) $(NAME).cpp -o $(NAME)

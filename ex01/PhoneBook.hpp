@@ -9,7 +9,8 @@ public:
 	void	addContact(void);
 	int		listContacts(void);
 	void	findContact(void);
+
 private:
-	int		active_index_;
+	int		_active_index;
 	void	printValue(string str, char suffix);
 };

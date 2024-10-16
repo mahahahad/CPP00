@@ -6,7 +6,7 @@
  * This value will be used later to add contacts to the phonebook.
  */
 PhoneBook::PhoneBook() {
-	active_index_ = 0;
+	_active_index = 0;
 }
 
 /**
@@ -18,7 +18,7 @@ PhoneBook::PhoneBook() {
 void	PhoneBook::addContact(void) {
 	Contact	new_contact;
 
-	if (active_index_ == 8) {
+	if (_active_index == 8) {
 		string response;
 		cout << "Warning: This will overwrite your oldest contact\n";
 		cout << "Continue? [y/n]> ";
@@ -37,14 +37,14 @@ void	PhoneBook::addContact(void) {
 		}
 	}
 	else
-		contacts[active_index_++] = new_contact.initialize();
+		contacts[_active_index++] = new_contact.initialize();
 }
 
 /**
  * @brief List all of the contacts in the phonebook
  */
 int	PhoneBook::listContacts(void) {
-	if (active_index_ == 0) {
+	if (_active_index == 0) {
 		cout << "You have no contacts in your phonebook\n";
 		return (-1);
 	}
@@ -52,7 +52,7 @@ int	PhoneBook::listContacts(void) {
 	printValue("F. Name", '|');
 	printValue("L. Name", '|');
 	printValue("Nickname", '\n');
-	for (int i = 0; i < active_index_; i++) {
+	for (int i = 0; i < _active_index; i++) {
 		printValue(numToStr(i + 1), '|');
 		printValue(contacts[i].getFirstName(), '|');
 		printValue(contacts[i].getLastName(), '|');
@@ -99,17 +99,17 @@ void	PhoneBook::findContact(void) {
 	};
 	do {
 		cout << "Index to display [";
-		for (int i = 0; i < active_index_; i++) {
+		for (int i = 0; i < _active_index; i++) {
 			cout << i + 1;
-			if (i + 1 != active_index_)
+			if (i + 1 != _active_index)
 				cout << "/";
 		}
 		cout << "]> ";
 		getline(cin, contact_index);
 		handleEOF();
 		std::istringstream(contact_index) >> int_id;
-		if (int_id - 1 < 0 || int_id - 1 >= active_index_)
+		if (int_id - 1 < 0 || int_id - 1 >= _active_index)
 			cout << "Please enter a valid index\n";
-	} while (int_id - 1 < 0 || int_id - 1 >= active_index_); 
+	} while (int_id - 1 < 0 || int_id - 1 >= _active_index); 
 	contacts[int_id - 1].printInfo();
 }

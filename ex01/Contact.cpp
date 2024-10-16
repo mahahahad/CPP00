@@ -15,15 +15,15 @@ void	Contact::getInput(string input_label) {
 		response = trim(response);
 	}
 	if (input_label == "First Name")
-		first_name_ = response;
+		_first_name = response;
 	else if (input_label == "Last Name")
-		last_name_ = response;
+		_last_name = response;
 	else if (input_label == "Nickname")
-		nickname_ = response;
+		_nickname = response;
 	else if (input_label == "Phone Number")
-		phone_number_ = response;
+		_phone_number = response;
 	else if (input_label == "Darkest Secret")
-		darkest_secret_ = response;
+		_darkest_secret = response;
 }
 
 /**
@@ -47,7 +47,7 @@ Contact Contact::initialize(void) {
  * @return string
  */
 string	Contact::getFirstName(void) {
-	return (first_name_);
+	return (_first_name);
 }
 
 /**
@@ -56,7 +56,7 @@ string	Contact::getFirstName(void) {
  * @return string
  */
 string	Contact::getLastName(void) {
-	return (last_name_);
+	return (_last_name);
 }
 
 /**
@@ -65,7 +65,7 @@ string	Contact::getLastName(void) {
  * @return string
  */
 string	Contact::getNickname(void) {
-	return (nickname_);
+	return (_nickname);
 }
 
 /**
@@ -73,9 +73,9 @@ string	Contact::getNickname(void) {
  * format.
 */
 void	Contact::printInfo(void) {
-	cout << "First Name: " << first_name_ << "\n";
-	cout << "Last Name: " << last_name_ << "\n";
-	cout << "Nickname: " << nickname_ << "\n";
-	cout << "Phone Number: " << phone_number_ << "\n";
-	cout << "Darkest Secret: " << darkest_secret_ << "\n";
+	cout << "First Name: " << _first_name << "\n";
+	cout << "Last Name: " << _last_name << "\n";
+	cout << "Nickname: " << _nickname << "\n";
+	cout << "Phone Number: " << _phone_number << "\n";
+	cout << "Darkest Secret: " << _darkest_secret << "\n";
 }
