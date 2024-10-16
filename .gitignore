@@ -3,5 +3,8 @@ ex*/*
 !ex*/Makefile
 !ex01/*.cpp
 !ex01/*.hpp
+!ex02/Account.cpp
+!ex02/Account.hpp
+!ex02/tests.cpp
 
 .vscode/
