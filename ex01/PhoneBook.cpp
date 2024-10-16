@@ -92,22 +92,24 @@ void	PhoneBook::printValue(string str, char suffix) {
  */
 void	PhoneBook::findContact(void) {
 	string	contact_index;
+	int int_id;
 
 	if (listContacts() == -1) {
 		return ;
 	};
-	cout << "Index to display [";
-	for (int i = 0; i < active_index_; i++) {
-		cout << i + 1;
-		if (i + 1 != active_index_)
-			cout << "/";
-	}
-	cout << "]> ";
-	getline(cin, contact_index);
-	int int_id = std::stoi(contact_index);
-	if (int_id - 1 < 0 || int_id - 1 >= active_index_) {
-		cout << "Please enter a valid index\n";
-		return ;
-	}
+	do {
+		cout << "Index to display [";
+		for (int i = 0; i < active_index_; i++) {
+			cout << i + 1;
+			if (i + 1 != active_index_)
+				cout << "/";
+		}
+		cout << "]> ";
+		getline(cin, contact_index);
+		handleEOF();
+		std::istringstream(contact_index) >> int_id;
+		if (int_id - 1 < 0 || int_id - 1 >= active_index_)
+			cout << "Please enter a valid index\n";
+	} while (int_id - 1 < 0 || int_id - 1 >= active_index_); 
 	contacts[int_id - 1].printInfo();
 }

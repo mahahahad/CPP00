@@ -1,6 +1,31 @@
 #include "Common.hpp"
 #include "Contact.hpp"
 
+void	Contact::getInput(string input_label) {
+	string	response;
+
+	cout << input_label << "> ";
+	getline(cin, response);
+	response = trim(response);
+	while (response.empty()) {
+		handleEOF();
+		cout << input_label << " cannot be empty. Please try again.\n";
+		cout << input_label << "> ";
+		getline(cin, response);
+		response = trim(response);
+	}
+	if (input_label == "First Name")
+		first_name_ = response;
+	else if (input_label == "Last Name")
+		last_name_ = response;
+	else if (input_label == "Nickname")
+		nickname_ = response;
+	else if (input_label == "Phone Number")
+		phone_number_ = response;
+	else if (input_label == "Darkest Secret")
+		darkest_secret_ = response;
+}
+
 /**
  * @brief Prompt the user to input the contacts: first_name, last_name, nickname, phone_number, and darkest_secret.
  * Create a contact using this information and return it.
@@ -8,16 +33,11 @@
  * @return Contact
  */
 Contact Contact::initialize(void) {
-	cout << "First name> ";
-	getline(cin, first_name_);
-	cout << "Last name> ";
-	getline(cin, last_name_);
-	cout << "Nickname> ";
-	getline(cin, nickname_);
-	cout << "Phone Number> ";
-	getline(cin, phone_number_);
-	cout << "Darkest Secret> ";
-	getline(cin, darkest_secret_);
+	getInput("First Name");
+	getInput("Last Name");
+	getInput("Nickname");
+	getInput("Phone Number");
+	getInput("Darkest Secret");
 	return (*this);
 }
 

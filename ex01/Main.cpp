@@ -14,13 +14,29 @@ string	numToStr(int num) {
 	return (str_stream.str());
 }
 
+string	trim(string original) {
+	const string whitespaces = " \t\r\n\f\v";
+	original.erase(0, original.find_first_not_of(whitespaces));
+	original.erase(original.find_last_not_of(whitespaces) + 1);
+	return original;
+}
+
+void	handleEOF(void) {
+	if (cin.eof()) {
+		cout << endl;
+		cout << "Exiting...";
+		std::exit(0);
+	}
+}
+
 int	main(void) {
 	string		input;
 	PhoneBook	phonebook;
 
-	while (input != "EXIT") {
+	do {
 		cout << "Enter a command [ADD/SEARCH/EXIT]> ";
 		getline(cin, input);
+		handleEOF();
 
 		if (input == "ADD") {
 			phonebook.addContact();
@@ -34,6 +50,6 @@ int	main(void) {
 		else {
 			cout << "Please enter a valid command\n";
 		}
-	}
+	} while (input != "EXIT" && !cin.eof());
 	return (0);
 }

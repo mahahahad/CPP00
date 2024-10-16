@@ -14,4 +14,5 @@ private:
 	string	nickname_;
 	string	phone_number_;
 	string	darkest_secret_;
+	void	getInput(string input_label);
 };
