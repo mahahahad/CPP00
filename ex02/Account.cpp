@@ -1,4 +1,9 @@
+#include <ctime>
+#include <iostream>
+#include <iomanip>
 #include "Account.hpp"
+
+using std::cout;
 
 /**
  * Constructor for an Account class.
@@ -32,7 +37,7 @@ void	Account::makeDeposit( int deposit ) { }
 /**
  * Make a withdrawal from the account at index position.
  * Subtract the withdrawal amount from the balance if possible. Otherwise,
- * print the refused message and abort the transaction. 
+ * print the refused message and abort the transaction.
  * Follow this format:
  * index:0;p_amount:47;withdrawal:refused
  * index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
@@ -45,7 +50,9 @@ int		Account::checkAmount( void ) const { }
  * Follow this format:
  * index:0;amount:47;deposits:1;withdrawals:0
  */
-void	Account::displayStatus( void ) const { }
+void	Account::displayStatus( void ) const {
+	_displayTimestamp();
+}
 
 /**
  * Display the current time
@@ -53,4 +60,17 @@ void	Account::displayStatus( void ) const { }
  * Follow this format:
  * [YYYYMMDD_HHMMSS]
  */
-void	Account::_displayTimestamp( void ) { }
+void	Account::_displayTimestamp( void ) {
+	std::time_t	current_time = std::time(NULL);
+	tm	*local_time = localtime(&current_time);
+
+	std::setfill('0');
+	cout << "["
+		 << std::setw(4) << local_time->tm_year + 1900
+		 << std::setw(2) << local_time->tm_mon + 1
+		 << std::setw(2) << local_time->tm_mday
+		 << "_"
+		 << std::setw(2) << local_time->tm_hour
+		 << std::setw(2) << local_time->tm_min
+		 << std::setw(2) << local_time->tm_sec << "] ";
+}

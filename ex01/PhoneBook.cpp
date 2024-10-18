@@ -1,5 +1,6 @@
 #include "Common.hpp"
 #include "PhoneBook.hpp"
+#include <iomanip>
 
 /**
  * @brief Construct a new Phone Book object and set the active index to 0.
@@ -70,17 +71,11 @@ int	PhoneBook::listContacts(void) {
  * @param str
  */
 void	PhoneBook::printValue(string str, char suffix) {
-	int	str_length = str.length();
-	int	pad_length = 10 - str_length;
-
-	if (pad_length < 0) {
-		cout << str.substr(0, 9) << '.';
+	if (str.size() <= 10) {
+		cout << str.insert(0, 10 - str.size(), ' ');
 	}
 	else {
-		for (int i = 0; i < pad_length; i++) {
-			cout << ' ';
-		}
-		cout << str;
+		cout << str.substr(0, 9) << ".";
 	}
 	if (suffix != '\0') {
 		cout << suffix;
@@ -96,7 +91,7 @@ void	PhoneBook::findContact(void) {
 
 	if (listContacts() == -1) {
 		return ;
-	};
+	}
 	do {
 		cout << "Index to display [";
 		for (int i = 0; i < _active_index; i++) {
@@ -110,6 +105,6 @@ void	PhoneBook::findContact(void) {
 		std::istringstream(contact_index) >> int_id;
 		if (int_id - 1 < 0 || int_id - 1 >= _active_index)
 			cout << "Please enter a valid index\n";
-	} while (int_id - 1 < 0 || int_id - 1 >= _active_index); 
+	} while (int_id - 1 < 0 || int_id - 1 >= _active_index);
 	contacts[int_id - 1].printInfo();
 }

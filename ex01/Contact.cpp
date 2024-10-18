@@ -46,7 +46,7 @@ Contact Contact::initialize(void) {
  *
  * @return string
  */
-string	Contact::getFirstName(void) {
+inline string	Contact::getFirstName(void) {
 	return (_first_name);
 }
 
@@ -55,7 +55,7 @@ string	Contact::getFirstName(void) {
  *
  * @return string
  */
-string	Contact::getLastName(void) {
+inline string	Contact::getLastName(void) {
 	return (_last_name);
 }
 
@@ -64,7 +64,7 @@ string	Contact::getLastName(void) {
  *
  * @return string
  */
-string	Contact::getNickname(void) {
+inline string	Contact::getNickname(void) {
 	return (_nickname);
 }
 
