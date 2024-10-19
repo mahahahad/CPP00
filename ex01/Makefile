@@ -1,12 +1,38 @@
-CC := c++
-CFLAGS := -Wall -Wextra -Wextra -std=c++98 -g3 -fsanitize=address
-SRCS := Contact.cpp PhoneBook.cpp
-NAME := main
+CXX := c++
+CXXFLAGS := -Wall -Werror -Wextra
+OS := $(shell uname)
 
-all:
-	$(CC) $(CFLAGS) $(SRCS) $(NAME).cpp -o $(NAME)
+# Include the appropriate compiler version of C++98
+ifeq ($(OS), "Linux")
+	CXXFLAGS += -std=c++98
+else
+	CXXFLAGS += -std=gnu++98
+endif
 
-fclean:
-	rm -rf $(NAME)
+SRCS := PhoneBook.cpp Contact.cpp main.cpp
+
+OBJS_DIR := objects
+OBJS := $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
+
+NAME := phonebook
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "Created" $(NAME)
+
+$(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	@echo "Created" $@
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+
+clean:
+	rm -rf $(OBJS_DIR)
+
+fclean: clean
+	rm -rf $(NAME) $(NAME).exe
 
 re: fclean all
