@@ -3,7 +3,7 @@ CXXFLAGS := -Wall -Werror -Wextra
 OS := $(shell uname)
 
 # Include the appropriate compiler version of C++98
-ifeq ($(OS), "Linux")
+ifeq ($(OS), Linux)
 	CXXFLAGS += -std=c++98
 else
 	CXXFLAGS += -std=gnu++98
