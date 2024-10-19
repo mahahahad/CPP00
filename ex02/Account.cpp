@@ -119,6 +119,7 @@ void	Account::makeDeposit( int deposit ) {
 	_amount += deposit;
 	_nbDeposits++;
 	_totalAmount += deposit;
+	_totalNbDeposits++;
 	printKeyValue("amount", _amount);
 	printKeyValue("nb_deposits", _nbDeposits, NEWLINE);
 }
@@ -154,6 +155,7 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 		_amount -= withdrawal;
 		_nbWithdrawals++;
 		_totalAmount -= withdrawal;
+		_totalNbWithdrawals++;
 		printKeyValue("amount", _amount);
 		printKeyValue("nb_withdrawals", _nbWithdrawals, NEWLINE);
 	}
