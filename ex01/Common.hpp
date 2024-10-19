@@ -1,9 +1,9 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 using std::cin;
 using std::cout;
