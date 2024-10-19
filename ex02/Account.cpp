@@ -4,80 +4,174 @@
 #include "Account.hpp"
 
 using std::cout;
+using std::string;
+
+enum	TerminatingChars {
+	SEMICOLON,
+	NEWLINE,
+};
+
+/**
+ * @brief Print a string key and int value pair.
+ * End with a semicolon by default.
+ * Optionally, pass the NEWLINE value from the TerminatingChars enum to display
+ * a newline instead of a semicolon at the end.
+ * 
+ * @param key 
+ * @param value 
+ * @param tc 
+ */
+inline void	printKeyValue(string key, int value, TerminatingChars tc = SEMICOLON) {
+	cout << key << ":" << value;
+	(tc == NEWLINE) ? cout << std::endl : cout << ';';
+}
+
+/**
+ * @brief Print a string key and string value pair.
+ * End with a semicolon by default.
+ * Optionally, pass the NEWLINE value from the TerminatingChars enum to display
+ * a newline instead of a semicolon at the end.
+ * 
+ * @param key 
+ * @param value 
+ * @param tc 
+ */
+inline void	printKeyValue(string key, string value, TerminatingChars tc = SEMICOLON) {
+	cout << key << ":" << value;
+	(tc == NEWLINE) ? cout << std::endl : cout << ';';
+}
 
 /**
  * Constructor for an Account class.
+ * 
+ * Follows this format:
+ * [TIMESTAMP] index:[ACC_ID];amount:[AMOUNT];created
  */
-// index:0;amount:42;created
 Account::Account( int initial_deposit ) {
-	(void) initial_deposit;
-}
-// index:0;amount:47;closed
-Account::~Account() { }
+	_accountIndex = _nbAccounts++;
+	_amount = initial_deposit;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
+	_totalAmount += _amount;
 
-int		Account::getNbAccounts( void ) {
 	_displayTimestamp();
-	return (0);
+	printKeyValue("index", _accountIndex);
+	printKeyValue("amount", _amount);
+	cout << "created" << std::endl;
+}
+
+/**
+ * Destructor for an Account class.
+ * 
+ * Follows this format:
+ * [TIMESTAMP] index:[ACC_ID];amount:[AMOUNT];closed
+ */
+Account::~Account() {
+	_displayTimestamp();
+	printKeyValue("index", _accountIndex);
+	printKeyValue("amount", _amount);
+	cout << "closed" << std::endl;
+}
+
+int	Account::_nbAccounts;
+int	Account::_totalAmount;
+int	Account::_totalNbDeposits;
+int	Account::_totalNbWithdrawals;
+int		Account::getNbAccounts( void ) {
+	return (_nbAccounts);
 }
 int		Account::getTotalAmount( void ) {
-	_displayTimestamp();
-	return (0);
+	return (_totalAmount);
 }
 int		Account::getNbDeposits( void ) {
-	_displayTimestamp();
-	return (0);
+	return (_totalNbDeposits);
 }
 int		Account::getNbWithdrawals( void ) {
-	_displayTimestamp();
-	return (0);
+	return (_totalNbWithdrawals);
 }
 
 /**
  * Display the cumulative accounts information
- * Follow this format:
- * accounts:8;total:20049;deposits:0;withdrawals:0
+ * Follows this format:
+ * accounts:[NB_ACCS];total:[TOTAL_AMOUNT];deposits:[NB_DEPOSITS];withdrawals:[NB_WITHDRAWALS]
  */
 void	Account::displayAccountsInfos( void ) {
 	_displayTimestamp();
+	printKeyValue("accounts", getNbAccounts());
+	printKeyValue("total", _totalAmount);
+	printKeyValue("deposits", getNbDeposits());
+	printKeyValue("withdrawals", getNbWithdrawals(), NEWLINE);
 }
 
 /**
  * Make a deposit from the account at index position.
  * Add the deposit amount to the balance and increment the number of deposits
  * variable.
- * Follow this format:
- * index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
+ * 
+ * Follows this format:
+ * [TIMESTAMP] index:[ACC_ID];p_amount:[AMOUNT];deposit:[DEPOSIT];amount:[AMOUNT];nb_deposits:[NB_DEPOSITS]
  */
 void	Account::makeDeposit( int deposit ) {
-	(void) deposit;
 	_displayTimestamp();
+	printKeyValue("index", _accountIndex);
+	printKeyValue("p_amount", _amount);
+	printKeyValue("deposit", deposit);
+	_amount += deposit;
+	_nbDeposits++;
+	_totalAmount += deposit;
+	printKeyValue("amount", _amount);
+	printKeyValue("nb_deposits", _nbDeposits, NEWLINE);
+}
+
+/**
+ * Util function for getting the current accounts amount.
+ * 
+ * @return int 
+ */
+int		Account::checkAmount( void ) const {
+	return (_amount);
 }
 
 /**
  * Make a withdrawal from the account at index position.
  * Subtract the withdrawal amount from the balance if possible. Otherwise,
  * print the refused message and abort the transaction.
- * Follow this format:
- * index:0;p_amount:47;withdrawal:refused
- * index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
+ * 
+ * Follows this format:
+ * (INSUFFICIENT FUNDS) [TIMESTAMP] index:[ACC_ID];p_amount:[AMOUNT];withdrawal:refused
+ * (NORMAL) [TIMESTAMP] index:[ACC_ID];p_amount:[AMOUNT];withdrawal:[WITHDRAWAL];amount:[AMOUNT];nb_withdrawals:[NB_WITHDRAWALS]
  */
 bool	Account::makeWithdrawal( int withdrawal ) {
-	(void) withdrawal;
 	_displayTimestamp();
+	printKeyValue("index", _accountIndex);
+	printKeyValue("p_amount", _amount);
+	if (checkAmount() - withdrawal < 0) {
+		printKeyValue("withdrawal", "refused", NEWLINE);
+		return (false);
+	}
+	else {
+		printKeyValue("withdrawal", withdrawal);
+		_amount -= withdrawal;
+		_nbWithdrawals++;
+		_totalAmount -= withdrawal;
+		printKeyValue("amount", _amount);
+		printKeyValue("nb_withdrawals", _nbWithdrawals, NEWLINE);
+	}
 	return (true);
-}
-int		Account::checkAmount( void ) const {
-	_displayTimestamp();
-	return (0);
 }
 
 /**
  * Display the status of the account at index position.
- * Follow this format:
- * index:0;amount:47;deposits:1;withdrawals:0
+ * 
+ * Follows this format:
+ * [TIMESTAMP] index:[ACC_ID];amount:[AMOUNT];deposits:[NB_DEPOSITS];withdrawals:[NB_WITHDRAWALS]
  */
 void	Account::displayStatus( void ) const {
 	_displayTimestamp();
+	printKeyValue("index", _accountIndex);
+	printKeyValue("amount", _amount);
+	printKeyValue("deposits", _nbDeposits);
+	printKeyValue("withdrawals", _nbWithdrawals, NEWLINE);
 }
 
 /**

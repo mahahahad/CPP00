@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -Wall -Werror -Wextra
+CXXFLAGS := -Wall -Werror -Wextra -g
 OS := $(shell uname)
 
 # Include the appropriate compiler version of C++98
@@ -9,7 +9,7 @@ else
 	CXXFLAGS += -std=gnu++98
 endif
 
-SRCS := Account.cpp main.cpp
+SRCS := Account.cpp
 
 OBJS_DIR := objects
 OBJS := $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
@@ -19,7 +19,7 @@ NAME := main
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJS) main.cpp -o $(NAME)
 	@echo "Created" $(NAME)
 
 $(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
@@ -36,3 +36,7 @@ fclean: clean
 	rm -rf $(NAME) $(NAME).exe
 
 re: fclean all
+
+test: $(OBJS)
+	@$(CXX) $(CXXFLAGS) $(OBJS) tests.cpp -o tests
+	@echo "Created tests"
