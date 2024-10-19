@@ -9,21 +9,37 @@ using std::cout;
  * Constructor for an Account class.
  */
 // index:0;amount:42;created
-Account::Account( int initial_deposit ) { }
+Account::Account( int initial_deposit ) {
+	(void) initial_deposit;
+}
 // index:0;amount:47;closed
 Account::~Account() { }
 
-int		Account::getNbAccounts( void ) { }
-int		Account::getTotalAmount( void ) { }
-int		Account::getNbDeposits( void ) { }
-int		Account::getNbWithdrawals( void ) { }
+int		Account::getNbAccounts( void ) {
+	_displayTimestamp();
+	return (0);
+}
+int		Account::getTotalAmount( void ) {
+	_displayTimestamp();
+	return (0);
+}
+int		Account::getNbDeposits( void ) {
+	_displayTimestamp();
+	return (0);
+}
+int		Account::getNbWithdrawals( void ) {
+	_displayTimestamp();
+	return (0);
+}
 
 /**
  * Display the cumulative accounts information
  * Follow this format:
  * accounts:8;total:20049;deposits:0;withdrawals:0
  */
-void	Account::displayAccountsInfos( void ) { }
+void	Account::displayAccountsInfos( void ) {
+	_displayTimestamp();
+}
 
 /**
  * Make a deposit from the account at index position.
@@ -32,7 +48,10 @@ void	Account::displayAccountsInfos( void ) { }
  * Follow this format:
  * index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
  */
-void	Account::makeDeposit( int deposit ) { }
+void	Account::makeDeposit( int deposit ) {
+	(void) deposit;
+	_displayTimestamp();
+}
 
 /**
  * Make a withdrawal from the account at index position.
@@ -42,8 +61,15 @@ void	Account::makeDeposit( int deposit ) { }
  * index:0;p_amount:47;withdrawal:refused
  * index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
  */
-bool	Account::makeWithdrawal( int withdrawal ) { }
-int		Account::checkAmount( void ) const { }
+bool	Account::makeWithdrawal( int withdrawal ) {
+	(void) withdrawal;
+	_displayTimestamp();
+	return (true);
+}
+int		Account::checkAmount( void ) const {
+	_displayTimestamp();
+	return (0);
+}
 
 /**
  * Display the status of the account at index position.
@@ -64,7 +90,7 @@ void	Account::_displayTimestamp( void ) {
 	std::time_t	current_time = std::time(NULL);
 	tm	*local_time = localtime(&current_time);
 
-	std::setfill('0');
+	cout << std::setfill('0');
 	cout << "["
 		 << std::setw(4) << local_time->tm_year + 1900
 		 << std::setw(2) << local_time->tm_mon + 1
@@ -72,5 +98,6 @@ void	Account::_displayTimestamp( void ) {
 		 << "_"
 		 << std::setw(2) << local_time->tm_hour
 		 << std::setw(2) << local_time->tm_min
-		 << std::setw(2) << local_time->tm_sec << "] ";
+		 << std::setw(2) << local_time->tm_sec
+		 << "] ";
 }
