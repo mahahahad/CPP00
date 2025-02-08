@@ -1,29 +1,45 @@
 #include "Common.hpp"
 #include "Contact.hpp"
 
-void	Contact::getInput(string input_label) {
-	string	response;
-
-	cout << input_label << "> ";
-	getline(cin, response);
-	response = trim(response);
-	while (response.empty()) {
+/**
+ * @brief Get input from the standard input until a string is received
+ * 
+ * @param prompt The prompt to display before the input is read.
+ * 
+ * @return string 
+ */
+string    promptAndGetString(string prompt) {
+    string  response;
+    
+    do {
+        cout << prompt;
+        getline(cin, response);
+        response = trim(response);
 		handleEOF();
-		cout << input_label << " cannot be empty. Please try again.\n";
-		cout << input_label << "> ";
-		getline(cin, response);
-		response = trim(response);
-	}
-	if (input_label == "First Name")
-		_first_name = response;
-	else if (input_label == "Last Name")
-		_last_name = response;
-	else if (input_label == "Nickname")
-		_nickname = response;
-	else if (input_label == "Phone Number")
-		_phone_number = response;
-	else if (input_label == "Darkest Secret")
-		_darkest_secret = response;
+        if (response.empty())
+		    cout << "String cannot be empty. Please try again.\n";
+   } while (response.empty());
+    return response;
+}
+
+/**
+ * @brief Get input from the standard input until an integer is received
+ * 
+ * @param prompt The prompt to display before the input is read.
+ * @return int 
+ */
+int    promptAndGetInt(string prompt) {
+    string  response;
+    int     converted;
+    
+    do {
+        response = promptAndGetString(prompt);
+        converted = atoi(response.c_str());
+        if (!converted) {
+            cout << "Number is invalid or 0. Please try again.\n";
+        }
+    } while (!converted);
+    return converted;
 }
 
 /**
@@ -33,11 +49,11 @@ void	Contact::getInput(string input_label) {
  * @return Contact
  */
 Contact Contact::initialize(void) {
-	getInput("First Name");
-	getInput("Last Name");
-	getInput("Nickname");
-	getInput("Phone Number");
-	getInput("Darkest Secret");
+    _first_name = promptAndGetString("First Name> ");
+    _last_name = promptAndGetString("Last Name> ");
+    _nickname = promptAndGetString("Nickname> ");
+    _phone_number = promptAndGetInt("Phone Number> ");
+    _darkest_secret = promptAndGetString("Darkest Secret> ");
 	return (*this);
 }
 
