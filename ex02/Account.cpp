@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 13:45:46 by maabdull          #+#    #+#             */
+/*   Updated: 2025/02/15 13:45:51 by maabdull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ctime>
 #include <iostream>
 #include <iomanip>
@@ -16,10 +28,10 @@ enum	TerminatingChars {
  * End with a semicolon by default.
  * Optionally, pass the NEWLINE value from the TerminatingChars enum to display
  * a newline instead of a semicolon at the end.
- * 
- * @param key 
- * @param value 
- * @param tc 
+ *
+ * @param key
+ * @param value
+ * @param tc
  */
 inline void	printKeyValue(string key, int value, TerminatingChars tc = SEMICOLON) {
 	cout << key << ":" << value;
@@ -31,10 +43,10 @@ inline void	printKeyValue(string key, int value, TerminatingChars tc = SEMICOLON
  * End with a semicolon by default.
  * Optionally, pass the NEWLINE value from the TerminatingChars enum to display
  * a newline instead of a semicolon at the end.
- * 
- * @param key 
- * @param value 
- * @param tc 
+ *
+ * @param key
+ * @param value
+ * @param tc
  */
 inline void	printKeyValue(string key, string value, TerminatingChars tc = SEMICOLON) {
 	cout << key << ":" << value;
@@ -43,7 +55,7 @@ inline void	printKeyValue(string key, string value, TerminatingChars tc = SEMICO
 
 /**
  * Constructor for an Account class.
- * 
+ *
  * Follows this format:
  * [TIMESTAMP] index:[ACC_ID];amount:[AMOUNT];created
  */
@@ -62,7 +74,7 @@ Account::Account( int initial_deposit ) {
 
 /**
  * Destructor for an Account class.
- * 
+ *
  * Follows this format:
  * [TIMESTAMP] index:[ACC_ID];amount:[AMOUNT];closed
  */
@@ -107,7 +119,7 @@ void	Account::displayAccountsInfos( void ) {
  * Make a deposit from the account at index position.
  * Add the deposit amount to the balance and increment the number of deposits
  * variable.
- * 
+ *
  * Follows this format:
  * [TIMESTAMP] index:[ACC_ID];p_amount:[AMOUNT];deposit:[DEPOSIT];amount:[AMOUNT];nb_deposits:[NB_DEPOSITS]
  */
@@ -126,8 +138,8 @@ void	Account::makeDeposit( int deposit ) {
 
 /**
  * Util function for getting the current accounts amount.
- * 
- * @return int 
+ *
+ * @return int
  */
 int		Account::checkAmount( void ) const {
 	return (_amount);
@@ -137,7 +149,7 @@ int		Account::checkAmount( void ) const {
  * Make a withdrawal from the account at index position.
  * Subtract the withdrawal amount from the balance if possible. Otherwise,
  * print the refused message and abort the transaction.
- * 
+ *
  * Follows this format:
  * (INSUFFICIENT FUNDS) [TIMESTAMP] index:[ACC_ID];p_amount:[AMOUNT];withdrawal:refused
  * (NORMAL) [TIMESTAMP] index:[ACC_ID];p_amount:[AMOUNT];withdrawal:[WITHDRAWAL];amount:[AMOUNT];nb_withdrawals:[NB_WITHDRAWALS]
@@ -164,7 +176,7 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 
 /**
  * Display the status of the account at index position.
- * 
+ *
  * Follows this format:
  * [TIMESTAMP] index:[ACC_ID];amount:[AMOUNT];deposits:[NB_DEPOSITS];withdrawals:[NB_WITHDRAWALS]
  */
