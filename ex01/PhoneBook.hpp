@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 13:45:06 by maabdull          #+#    #+#             */
+/*   Updated: 2025/02/15 14:11:17 by maabdull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
-#include "Common.hpp"
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+
 #include "Contact.hpp"
 
 class PhoneBook {
@@ -14,3 +28,5 @@ private:
 	int		_active_index;
 	void	printValue(string str, char suffix);
 };
+
+#endif
