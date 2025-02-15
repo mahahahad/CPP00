@@ -6,7 +6,7 @@
 /*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:45:06 by maabdull          #+#    #+#             */
-/*   Updated: 2025/02/15 14:11:17 by maabdull         ###   ########.fr       */
+/*   Updated: 2025/02/15 14:47:13 by maabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ class PhoneBook {
 public:
 	PhoneBook();
 	Contact contacts[8];
-	void	addContact(void);
-	int		listContacts(void);
-	void	findContact(void);
+	void	addContact( void );
+	int		listContacts( void );
+	void	findContact( void );
 
 private:
 	int		_active_index;
-	void	printValue(string str, char suffix);
+	void	printValue( string str, char suffix );
 };
 
 #endif

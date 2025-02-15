@@ -6,14 +6,13 @@
 /*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:43:37 by maabdull          #+#    #+#             */
-/*   Updated: 2025/02/15 13:59:57 by maabdull         ###   ########.fr       */
+/*   Updated: 2025/02/15 14:38:01 by maabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int	shout(char *str)
-{
+int	shout(char *str) {
 	int	i = 0;
 
 	while (str[i])
@@ -21,13 +20,11 @@ int	shout(char *str)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	int	i;
-
+int	main(int argc, char **argv) {
 	if (argc == 1)
 		return (std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n", 0);
-	i = 0;
+
+	int	i = 0;
 	argv++;
 	while (i + 1 < argc)
 		shout(argv[i++]);

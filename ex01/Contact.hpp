@@ -6,7 +6,7 @@
 /*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:44:16 by maabdull          #+#    #+#             */
-/*   Updated: 2025/02/15 14:03:53 by maabdull         ###   ########.fr       */
+/*   Updated: 2025/02/15 14:47:29 by maabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ enum INPUT_TYPE {
 
 class Contact {
 	public:
-		Contact	initialize(void);
-		string	getFirstName(void);
-		string	getLastName(void);
-		string	getNickname(void);
-		void	printInfo(void);
+		Contact	initialize( void );
+		string	getFirstName( void );
+		string	getLastName( void );
+		string	getNickname( void );
+		void	printInfo( void );
 
 	private:
 		string	_first_name;
