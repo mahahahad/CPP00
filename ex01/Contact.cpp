@@ -1,42 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 13:44:12 by maabdull          #+#    #+#             */
+/*   Updated: 2025/02/15 13:44:13 by maabdull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Common.hpp"
 #include "Contact.hpp"
 
 /**
  * @brief Get input from the standard input until a string is received
- * 
+ *
  * @param prompt The prompt to display before the input is read.
- * 
- * @return string 
+ *
+ * @return string
  */
 string    promptAndGetString(string prompt) {
     string  response;
-    
+
     do {
         cout << prompt;
         getline(cin, response);
         response = trim(response);
 		handleEOF();
         if (response.empty())
-		    cout << "String cannot be empty. Please try again.\n";
+		    cout << "Value cannot be empty. Please try again.\n";
    } while (response.empty());
     return response;
 }
 
 /**
  * @brief Get input from the standard input until an integer is received
- * 
+ *
  * @param prompt The prompt to display before the input is read.
- * @return int 
+ * @return int
  */
 int    promptAndGetInt(string prompt) {
     string  response;
     int     converted;
-    
+
     do {
         response = promptAndGetString(prompt);
         converted = atoi(response.c_str());
         if (!converted) {
-            cout << "Number is invalid or 0. Please try again.\n";
+            cout << "Value is invalid or 0. Please try again.\n";
         }
     } while (!converted);
     return converted;

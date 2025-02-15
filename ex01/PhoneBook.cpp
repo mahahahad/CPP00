@@ -1,6 +1,16 @@
-#include "Common.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maabdull <maabdull@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 14:09:49 by maabdull          #+#    #+#             */
+/*   Updated: 2025/02/15 14:10:32 by maabdull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
-#include <iomanip>
 
 /**
  * @brief Construct a new Phone Book object and set the active index to 0.
@@ -102,7 +112,7 @@ void	PhoneBook::findContact(void) {
 		cout << "]> ";
 		getline(cin, contact_index);
 		handleEOF();
-		std::istringstream(contact_index) >> int_id;
+		int_id = atoi(contact_index.c_str());
 		if (int_id - 1 < 0 || int_id - 1 >= _active_index)
 			cout << "Please enter a valid index\n";
 	} while (int_id - 1 < 0 || int_id - 1 >= _active_index);
