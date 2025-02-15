@@ -14,12 +14,12 @@ SRCS := Account.cpp
 OBJS_DIR := objects
 OBJS := $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 
-NAME := main
+NAME := tests
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CXX) $(CXXFLAGS) $(OBJS) main.cpp -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJS) tests.cpp -o $(NAME)
 	@echo "Created" $(NAME)
 
 $(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
@@ -38,11 +38,7 @@ fclean: clean
 
 re: fclean all
 
-test: $(OBJS)
-	@$(CXX) $(CXXFLAGS) $(OBJS) tests.cpp -o tests
-	@echo "Created tests"
-
-compare: test
+compare:
 	@./tests > current.log
 	@echo "Appended tests to current.log file"
 	@awk '{ print $$2 }' ./current.log > current_NOTIME.log
